@@ -1,71 +1,64 @@
-# Getting Started with Create React App
+# BennyDex
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este é um pequeno projeto de Pokedex que utiliza a PokeAPI para obter dados e exibir informações sobre os Pokémon. O projeto consiste em uma interface de usuário simples, onde os cards dos Pokémon são renderizados com base nos dados retornados pela API.
 
-## Available Scripts
+![623shots_so](https://github.com/berdfandrade/bennydex/assets/96706881/c6b77600-4db5-4eb8-bdac-93ad0f6716d8)
 
-In the project directory, you can run:
+## Componente PokemonCard
 
-### `npm start`
+O componente `PokemonCard` é responsável por renderizar um card individual para um Pokémon. Ele recebe um objeto `pokemon` como propriedade, que contém informações como nome, imagens, tipos e estatísticas do Pokémon.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Estrutura do Card
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+O card do Pokémon é renderizado dentro de uma `<Box>` do Chakra UI. Ele contém as seguintes informações:
 
-### `npm test`
+- Nome do Pokémon: Renderizado como um `<Text>` com o nome do Pokémon em negrito e cor personalizada.
+- Imagem do Pokémon: Renderizada como uma `<Image>`, exibindo a imagem frontal do Pokémon.
+- Estatísticas do Pokémon: Renderizadas como um grupo de `<Stat>`, onde cada estatística é exibida em um `<StatLabel>` seguido pelo valor numérico em um `<StatNumber>`. As estatísticas são exibidas em uma grade de 3 colunas usando `<Grid>` e `<GridItem>`.
+- Tipos do Pokémon: Renderizados como `<Tag>`, onde cada tipo é representado como uma tag colorida. Os tipos são mapeados para cores e rótulos personalizados com base no tipo do Pokémon.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Funções e Hooks utilizados
 
-### `npm run build`
+O componente `PokemonCard` utiliza o hook `useDisclosure` do Chakra UI para controlar o estado de abertura do card. Além disso, a função `capitalizeWords` é utilizada para formatar corretamente o nome do Pokémon.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Uso do componente
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+O componente `PokemonCard` pode ser utilizado em um contexto maior, como parte de uma lista de Pokémon em uma Pokedex. Ele recebe os dados de um Pokémon como propriedade e renderiza o card correspondente.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Exemplo de uso:
 
-### `npm run eject`
+```jsx
+import PokemonCard from "./PokemonCard";
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+const Pokedex = () => {
+  // Array de dados de Pokémon
+  const pokemonList = [
+    { name: "bulbasaur", /* outros dados do Pokémon */ },
+    { name: "charmander", /* outros dados do Pokémon */ },
+    // Outros Pokémon...
+  ];
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+  return (
+    <div>
+      {pokemonList.map((pokemon) => (
+        <PokemonCard key={pokemon.name} pokemon={pokemon} />
+      ))}
+    </div>
+  );
+};
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+export default Pokedex;
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Neste exemplo, `PokemonCard` é renderizado para cada Pokémon na `pokemonList`. Cada card exibirá as informações corretas com base nos dados do Pokémon.
 
-## Learn More
+Esse é apenas um exemplo básico de como o componente `PokemonCard` pode ser utilizado em um contexto maior de uma Pokedex. Você pode personalizar e estilizar o componente de acordo com suas necessidades.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Considerações finais
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Este projeto de Pokedex é uma maneira divertida de explorar a PokeAPI e exibir informações sobre os Pokémon de forma visualmente agradável. Você pode expandir o projeto adicionando recursos como pesquisa, filtros e detalhes adicionais sobre cada Pokémon.
 
-### Code Splitting
+Lembre-se de consultar a documentação da PokeAPI para obter mais informações sobre os recursos disponíveis e as possibilidades de uso.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Divirta-se explorando o mundo dos Pokémon com a sua Pokedex!
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-# bennydex
